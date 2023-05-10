@@ -39,7 +39,17 @@ struct ContentView: View {
                                     }
                             }
                         }
-                } .listStyle(PlainListStyle())
+                } .toolbar {
+                    ToolbarItemGroup(placement: .bottomBar) {
+                       Text("api.openweathermap.org")
+                           .font(.footnote)
+                           .foregroundColor(.secondary)
+                           .frame(maxWidth: .infinity)
+                           .textSelection(.enabled)
+                       }
+                  }
+                .listStyle(PlainListStyle())
+                    
                 }
                 .alert(item: $forecastListVM.appError) { appError in
                     Alert(title: Text("Error"),
@@ -55,7 +65,7 @@ struct ContentView: View {
                 .refreshable {
                     await forecastListVM.getWeatherForecast()
                 }
-            }
+            } 
         }
     }
  

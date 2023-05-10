@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class ForecastListViewModel: ObservableObject {
-    var apiKey = ApiKey()
     struct AppError: Identifiable {
         let id = UUID().uuidString
         let errorString: String
