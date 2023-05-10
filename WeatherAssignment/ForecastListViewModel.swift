@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class ForecastListViewModel: ObservableObject {
+    var apiKey = ApiKey()
     struct AppError: Identifiable {
         let id = UUID().uuidString
         let errorString: String
@@ -39,7 +40,7 @@ class ForecastListViewModel: ObservableObject {
             }
             if let lat = placemarks?.first?.location?.coordinate.latitude,
                 let lon = placemarks?.first?.location?.coordinate.longitude{
-                apiService.getJSON(urlString: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=ced77239eed09216d116d09c51875ddb&units=metric", dateDecodingStrat: .secondsSince1970) { (result: Result<Forecast,APIService.APIError>) in
+                apiService.getJSON(urlString: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=************{yourApiKey}***=&units=metric", dateDecodingStrat: .secondsSince1970) { (result: Result<Forecast,APIService.APIError>) in
                     switch result {
                     case .success(let forecast):
                         DispatchQueue.main.async {
